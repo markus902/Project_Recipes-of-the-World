@@ -1,11 +1,8 @@
 //AJAX call to recipe API
-$(document).ready(function() {
+$(document).ready(function () {
     // Call recipe API
 
     let recipeKey = "69d0e213894baf3dbaef4e09fa5215d8";
-    let locationKey;
-    let recipe;
-    let location;
     let apiRecipes;
 
 
@@ -13,7 +10,7 @@ $(document).ready(function() {
         $.ajax({
             url: searchTerm,
             method: "GET",
-        }).then(function(response) {
+        }).then(function (response) {
 
             console.log(response);
             $(".search-form").hide();
@@ -22,39 +19,27 @@ $(document).ready(function() {
             // let random = Math.floor(Math.random() * 30);
             response = JSON.parse(response);
 
-            apiRecipes = response1.recipes;
+            apiRecipes = response.recipes;
             console.log(apiRecipes);
 
             // response1 = JSON.parse(response1);
-            for (i = 0; i < response1.recipes.length; i++) {
-                console.log(2);
+            for (i = 0; i < response.recipes.length; i++) {
                 console.log("Recipes API List addition")
                 let favIcon = $("<i>")
                     .addClass("fav")
-                    .attr("value", JSON.stringify(response1.recipes[2]))
+                    .attr("value", JSON.stringify(response.recipes))
                     .attr("data-recipe-index", i)
                     .addClass("fa fa-heart fa_custom");
 
                 let titleImg = $("<img>")
-                    .attr("src", response1.recipes[i].image_url)
+                    .attr("src", response.recipes[i].image_url)
                     .css("max-width", "500px");
 
                 let dishTitle = $("<h5>")
-                    .text(response1.recipes[i].title)
+                    .text(response.recipes[i].title)
                     .addClass("font")
                     .css("text-align", "center")
                     .prepend(favIcon);
-
-                /*  let titleImg = $("<img>")
-                      .attr("src", response1.recipes[i].image_url)
-                      .css("max-width", "500px")
-                      .add(favIcon);
-
-                  let dishTitle = $("<h5>")
-                      .text(response1.recipes[i].title)
-                      .addClass("font")
-                      .css("text-align", "center")
-                      .prepend(favIcon);*/
 
                 let newListDiv = $("<div>")
                     .addClass("jumbotron justify-content-center click-hook")
@@ -71,8 +56,8 @@ $(document).ready(function() {
     // Call Location API on load
 
     var ip = "";
-    var api_key = 'at_Hh2TNGBjuJxpNv4hWz9Zug16R7wuL';
-    $(function() {
+    var api_key = 'at_mCt8AJmwKicWzBoNboBTeR0SOFRhj';
+    $(function () {
         $.ajax({
             url: "https://geo.ipify.org/api/v1",
             dataType: "json",
@@ -80,8 +65,8 @@ $(document).ready(function() {
                 apiKey: api_key,
                 ipAddress: ip
             },
-            success: function(data) {
-                $("body").append("<pre>" + JSON.stringify(data, "", 2) + "</pre>");
+            success: function (data) {
+                // $("body").append("<pre>" + JSON.stringify(data, "", 2) + "</pre>");
 
                 let countryCode = data.location.country;
                 console.log(countryCode);
@@ -100,7 +85,7 @@ $(document).ready(function() {
         });
     });
 
-    //-------------------------------------Front end functionality--------------------------------------
+    //-------------------------------------Front end functionality------------------------------
 
     $(".search-form").hide();
     $("#favorite-btn").on("click", () => {
@@ -112,18 +97,17 @@ $(document).ready(function() {
 
     //-------------------------------------Search function--------------------------------------
 
-    $("#search-btn").on("click", function() {
+    $("#search-btn").on("click", function () {
         $(".search-form").toggle() //showing search form
     });
 
-    $("#search-btn2").on("click", function() {
-
+    $("#search-btn2").on("click", function () {
         let searchTerm = $("#search-input").val();
         let apiInput = `https://www.food2fork.com/api/search?key=${recipeKey}&q=${searchTerm}`;
         recipeCall(apiInput);
     });
 
-    $(document).on("click", ".fav", function(event) {
+    $(document).on("click", ".fav", function (event) {
         event.preventDefault();
 
         let favoriteList = JSON.parse(localStorage.getItem("favorites"));
