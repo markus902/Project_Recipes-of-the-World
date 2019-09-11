@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Recipes of the World</title>
-
     <!--css reference -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 
@@ -23,40 +20,68 @@
 
     <!-- Google Font-->
     <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
+
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBORtNXPkMArMSod00FWi5V8rYYYn3t9OI",
+            authDomain: "recipes-of-the-world.firebaseapp.com",
+            databaseURL: "https://recipes-of-the-world.firebaseio.com",
+            projectId: "recipes-of-the-world",
+            storageBucket: "recipes-of-the-world.appspot.com",
+            messagingSenderId: "857960716374",
+            appId: "1:857960716374:web:217ec8525f51c6f8e683f7"
+        };
+
+
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
     <div class="container">
         <div class="row headerSpace"></div>
         <!-- Jumbotron -->
-        <div id="headline" class="jumbotron font">
+        <div id="header" class="jumbotron font">
             <h1 class="text-center">Recipes of the World</h1>
             <p class="text-center">Enjoy dining from around the world</p>
         </div>
 
-        <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-dark m-1 font" id="favorite-btn">Favorites</button>
-            <button type="button" class="btn btn-dark m-1  font" id="search-btn">Search</button>
-            <button type="button" class="btn btn-dark m-1  font" id="about-btn">About</button>
-        </div>
-
-        <div class="row justify-content-center text-center">
-            <div class="col-12">
-                <div class="search-form text-center">
-                    <!-- <label for="search-input">Dish</label> -->
-                    <input class="form-control mb-2" id="search-input" placeholder="Recipe..." type="text">
-                    <button type="submit" class="btn btn-primary mb-2" id="search-btn2">Seach</button>
+        <div id="login" class="jumbotron font">
+            <div class="login-page">
+                <div class="form">
+                    <form class="register-form text-center">
+                        </p>
+                        <input id="new-name" class="input-field" type="text" placeholder="name" /><br>
+                        <input id="new-email" class="input-field" type="text" placeholder="email address" /><br>
+                        <input id="new-password" class="input-field" type="password" placeholder="password" /><br>
+                        <button id="create-btn" type="button" class="btn btn-primary sign">create</button>
+                        <p class="message">Not registerd? Create new account.</p>
+                        <br>
+                    </form>
+                    <form class="login-form text-center">
+                        <input id="email" class="input-field" type="text" placeholder="username" /><br>
+                        <input id="password" class="input-field" type="password" placeholder="password" /><br>
+                        <button id="login-btn" type="button" class="btn btn-primary sign">login</button>
+                        <p class="message">Got an account. Sign in here.</p>
+                    </form>
                 </div>
             </div>
         </div>
-
-        <div class="row justify-content-center">
-            <div id="current-dish" class="text-center">
-            </div>
-        </div>
-    </div>
+        <script src="./assets/javascript/authentication.js"></script>
 </body>
-<script src="./assets/javascript/codes.js"></script>
-<script type=" text/javascript " src="./assets/javascript/javascript.js "></script>
 
 </html>

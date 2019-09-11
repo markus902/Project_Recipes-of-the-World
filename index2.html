@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes of the World</title>
+
+    <!--css reference -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
+    <!--chance reference-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.3/chance.min.js"></script>
+
+    <!--font awesome reference-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- jQuery.js reference-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap references-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row headerSpace"></div>
+        <!-- Jumbotron -->
+        <div id="headline" class="jumbotron font">
+            <h1 class="text-center">Recipes of the World</h1>
+            <p class="text-center">Enjoy dining from around the world</p>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-dark m-1 font" id="favorite-btn">Favorites</button>
+            <button type="button" class="btn btn-dark m-1  font" id="search-btn">Search</button>
+            <button type="button" class="btn btn-dark m-1  font" id="about-btn">About</button>
+        </div>
+
+        <div class="row justify-content-center text-center">
+            <div class="col-12">
+                <div class="search-form text-center">
+                    <!-- <label for="search-input">Dish</label> -->
+                    <input class="form-control mb-2" id="search-input" placeholder="Recipe..." type="text">
+                    <button type="submit" class="btn btn-primary mb-2" id="search-btn2">Seach</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div id="current-dish" class="text-center">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./assets/javascript/codes.js"></script>
+<script type=" text/javascript " src="./assets/javascript/javascript.js "></script>
+
+</html>
