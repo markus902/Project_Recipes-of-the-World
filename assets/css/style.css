@@ -48,6 +48,13 @@ div.current-dish {
     color: white;
 }
 
+.input-field {
+    margin: 3px;
+}
+
+.sign {
+    margin: 3px;
+}
 
 /* .about {
     background-size: cover;
