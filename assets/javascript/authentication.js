@@ -1,30 +1,6 @@
-//Sign up
-$("#create-btn").on("click", () => {
-    let newName = $("#new-name").val().trim();
-    let newEmail = $("#new-email").val().trim();
-    let newPassword = $("#new-password").val().trim();
+$(document).ready(function () {
 
-    firebase.auth().createUserWithEmailAndPassword(newEmail, newPassword).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-    });
-})
-
-//Sign in
-$("#login-btn").on("click", () => {
-    let email = $("#email").val().trim();
-    let password = $("#password").val().trim();
-    console.log("success");
-
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-    });
-
+    //check if user signed in
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
@@ -36,10 +12,23 @@ $("#login-btn").on("click", () => {
             var uid = user.uid;
             var providerData = user.providerData;
 
-            window.location.href = "./index2.html";
+            console.log("signed in");
 
         } else {
+            console.log("not signed in");
             window.location.href = "./index.html";
         }
     });
+
+    //Sign out
+    $("#signout-btn").on("click", (event) => {
+        event.preventDefault();
+        firebase.auth().signOut().then(function () {
+            console.log("signed out");
+        }).catch(function (error) {
+            // An error happened.
+        });
+    });
+
+
 });
