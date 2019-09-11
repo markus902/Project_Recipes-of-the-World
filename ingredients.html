@@ -5,9 +5,30 @@
     <meta charset="UTF-8">
     <title>Recipes of the World</title>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBORtNXPkMArMSod00FWi5V8rYYYn3t9OI",
+            authDomain: "recipes-of-the-world.firebaseapp.com",
+            databaseURL: "https://recipes-of-the-world.firebaseio.com",
+            projectId: "recipes-of-the-world",
+            storageBucket: "recipes-of-the-world.appspot.com",
+            messagingSenderId: "857960716374",
+            appId: "1:857960716374:web:217ec8525f51c6f8e683f7"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
 
     <!--css reference-->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
@@ -18,34 +39,34 @@
 </head>
 
 <body>
-    <!-- <nav>
-        <div id="backbtn">BACK</div>
-    </nav> -->
-    <!-- <div class="container"> -->
-    <div class="row">
-        <div class="col-6 left layer-1">
-            <div class="d-flex justify-content-center">
+    <button type="button" id="signout-btn" class="btn btn-info signout float-right">Sign out</button>
+    <div class="container">
 
-                <h1 id="chalkboard">Ingredients</h1>
-                <img id="dishImg">
-                <ul id="ingredients chalkboard"></ul>
+        <div class="row">
+            <div class="col-6 left layer-1">
+                <div class="d-flex justify-content-center">
+
+                    <h1 id="chalkboard">Ingredients</h1>
+                    <img id="dishImg">
+                    <ul id="ingredients chalkboard"></ul>
+                </div>
+
             </div>
+            <div class="col-6 right img-fluid">
+                <div class="d-flex justify-content-center">
+                    <h1 id="chalkboard">Instructions</h1>
+                    <ol id="instructions chalkboard">
+                    </ol>
+                </div>
 
-        </div>
-        <div class="col-6 right img-fluid">
-            <div class="d-flex justify-content-center">
-                <h1 id="chalkboard">Instructions</h1>
-                <ol id="instructions chalkboard">
-                </ol>
             </div>
-
         </div>
     </div>
-    <!-- </div> -->
 
     <!-- jQuery.js reference-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="./assets/javascript/ingredients.js"></script>
+    <script src="./assets/javascript/authentication.js"></script>
 
 </body>

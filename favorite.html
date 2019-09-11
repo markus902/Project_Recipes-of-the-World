@@ -23,6 +23,31 @@
 </head>
 
 <body>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBORtNXPkMArMSod00FWi5V8rYYYn3t9OI",
+            authDomain: "recipes-of-the-world.firebaseapp.com",
+            databaseURL: "https://recipes-of-the-world.firebaseio.com",
+            projectId: "recipes-of-the-world",
+            storageBucket: "recipes-of-the-world.appspot.com",
+            messagingSenderId: "857960716374",
+            appId: "1:857960716374:web:217ec8525f51c6f8e683f7"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <button type="button" id="signout-btn" class="btn btn-info signout float-right">Sign out</button>
     <div class="container">
         <div class="row headerSpace"></div>
         <!-- Jumbotron -->
