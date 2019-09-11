@@ -1,3 +1,5 @@
+let guestAccess = false;
+
 $(document).ready(function () {
 
     //check if user signed in
@@ -29,6 +31,5 @@ $(document).ready(function () {
             // An error happened.
         });
     });
-
 
 });

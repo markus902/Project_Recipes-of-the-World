@@ -25,5 +25,11 @@ $("#login-btn").on("click", (event) => {
         var errorMessage = error.message;
         // ...
     });
+});
 
+//Guest
+$("#guest-btn").on("click", (event) => {
+    event.preventDefault();
+    guestAccess = true;
+    window.location.href = "./index2.html";
 });
