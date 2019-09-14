@@ -15,6 +15,9 @@ $(document).ready(function () {
             var providerData = user.providerData;
 
             console.log("signed in");
+            console.log(uid);
+            sessionStorage.setItem("user", uid);
+
 
         } else {
             console.log("not signed in");

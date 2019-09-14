@@ -12,7 +12,7 @@ $(document).ready(function () {
             method: "GET",
         }).then(function (response) {
 
-            console.log(response);
+            // console.log(response);
             $(".search-form").hide();
             $("#current-dish").empty();
 
@@ -20,14 +20,14 @@ $(document).ready(function () {
             response = JSON.parse(response);
 
             apiRecipes = response.recipes;
-            console.log(apiRecipes);
+            // console.log(apiRecipes);
 
             // response1 = JSON.parse(response1);
             for (i = 0; i < response.recipes.length; i++) {
-                console.log("Recipes API List addition")
+                // console.log("Recipes API List addition")
                 let favIcon = $("<i>")
                     .addClass("fav")
-                    .attr("value", JSON.stringify(response.recipes))
+                    // .attr("value", JSON.stringify(apiRecipes))
                     .attr("data-recipe-index", i)
                     .addClass("fa fa-heart fa_custom");
 
@@ -69,12 +69,10 @@ $(document).ready(function () {
                 // $("body").append("<pre>" + JSON.stringify(data, "", 2) + "</pre>");
 
                 let countryCode = data.location.country;
-                console.log(countryCode);
 
                 // conversion of country code to nationality
 
                 countryObject.forEach(element => {
-                    console.log(element.Country);
                     if (element.Code == countryCode) {
                         console.log("TRUE");
                         apiInput = `https://www.food2fork.com/api/search?key=${recipeKey}&q=${element.Nationality}`;
@@ -85,7 +83,7 @@ $(document).ready(function () {
         });
     });
 
-    //-------------------------------------Front end functionality------------------------------
+    //--------------------------Front end functionality - linking buttons------------------------------
 
     $(".search-form").hide();
     $("#favorite-btn").on("click", () => {
@@ -107,26 +105,25 @@ $(document).ready(function () {
         recipeCall(apiInput);
     });
 
+    //--------------------------------Click to favorite--------------------------------------------
+
+    var database = firebase.database()
+
     $(document).on("click", ".fav", function (event) {
         event.preventDefault();
 
-        let favoriteList = JSON.parse(localStorage.getItem("favorites"));
+        //Functionality for favorites
+        let newElement = $(this).attr("data-recipe-index")
+        database.ref("/users").once("value", function (snapshot) {
+            console.log(snapshot.val());
+        });
+        database.ref(`/users/${sessionStorage.getItem("user")}`).push({
+            recipe: apiRecipes[newElement]
+        })
 
-        // Checkin if in local Storage
-        if (!Array.isArray(favoriteList)) {
-            favoriteList = [];
-        }
 
-        // Get the recipe details and store them in an object
-        let recipeIndex = $(this).attr("data-recipe-index");
 
-        let favoriteItem = apiRecipes[parseInt(recipeIndex)];
 
-        // Adding favorite to local list variable and adding it to local storage
-        favoriteList.push(favoriteItem);
-
-        // Save the favorite into localstorage.
-        localStorage.setItem("favorites", JSON.stringify(favoriteList));
     });
 
 });
