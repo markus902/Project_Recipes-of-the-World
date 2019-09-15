@@ -118,17 +118,21 @@ $(document).ready(function () {
         event.preventDefault();
 
         //Functionality for favorites
-        newElement = $(this).attr("data-recipe-index")
+        newElement = $(this).attr("data-recipe-index");
 
-        database.ref(`/users/${sessionStorage.getItem("user")}`).once("value", function (snapshot) {
+        database.ref(`/users/${sessionStorage.getItem("user")}`).on("child_added", function (snapshot) {
             snapshot.forEach(function () {
-                if (snapshot.child().hasChild(apiRecipes[newElement].recipe_id)) {
-                    console.log("exists")
-                } else {
-                    console.log("not extist")
-                }
+                data.push(snapshot.val().recipeID)
             });
         });
+        console.log(data);
+        data.forEach((element) => {
+            if (element = apiRecipes[newElement].recipe_id) {
+                console.log("exists")
+            } else {
+                console.log("not exist")
+            }
+        })
     });
     // database.ref(`/users/${sessionStorage.getItem("user")}`).on("child_added", function (snapshot) {
     //     snapshot.forEach(function () {
