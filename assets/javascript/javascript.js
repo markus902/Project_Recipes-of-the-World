@@ -2,7 +2,10 @@
 $(document).ready(function () {
     // Call recipe API
 
-    let recipeKey = "69d0e213894baf3dbaef4e09fa5215d8";
+    // let recipeKey = "69d0e213894baf3dbaef4e09fa5215d8";
+    // let recipeKey = "a94ca399f777a17059a15f621c0854e7";
+    let recipeKey = "1ea52a5202149f9ac4dc33174c85c140";
+
     let apiRecipes;
 
 
@@ -108,22 +111,55 @@ $(document).ready(function () {
     //--------------------------------Click to favorite--------------------------------------------
 
     var database = firebase.database()
-
+    let newElement;
+    let data = [];
     $(document).on("click", ".fav", function (event) {
+        console.log("click works")
         event.preventDefault();
 
         //Functionality for favorites
-        let newElement = $(this).attr("data-recipe-index")
-        database.ref("/users").once("value", function (snapshot) {
-            console.log(snapshot.val());
+        newElement = $(this).attr("data-recipe-index")
+
+        database.ref(`/users/${sessionStorage.getItem("user")}`).once("value", function (snapshot) {
+            snapshot.forEach(function () {
+                if (snapshot.child().hasChild(apiRecipes[newElement].recipe_id)) {
+                    console.log("exists")
+                } else {
+                    console.log("not extist")
+                }
+            });
         });
-        database.ref(`/users/${sessionStorage.getItem("user")}`).push({
-            recipe: apiRecipes[newElement]
-        })
-
-
-
-
     });
+    // database.ref(`/users/${sessionStorage.getItem("user")}`).on("child_added", function (snapshot) {
+    //     snapshot.forEach(function () {
+    //         console.log(snapshot.val().recipe.recipe_id);
+    //     });
+    // });
+
+    // database.ref(`/users/${sessionStorage.getItem("user")}`).push({
+    //     recipe: apiRecipes[newElement],
+    //     recipeID: apiRecipes[newElement].recipe_id,
+    // });
+    // console.log(apiRecipes[newElement].recipe_id, "element pushed");
+    // });
+
+
+
+
+
+    // database.ref(`/users`).orderByChild(`${sessionStorage.getItem("user")}`).once("value", function (snapshot) {
+
+    //     console.log(snapshot);
+    // })
+
+    // database.ref("/users").orderByChild("recipeID").equalTo(apiRecipes[newElement].recipe_id).once("value", function (snapshot) {
+    //     if (snapshot.exists()) {
+    //         console.log("already there!");
+    //     };
+
+    // });
+
+
+
 
 });
