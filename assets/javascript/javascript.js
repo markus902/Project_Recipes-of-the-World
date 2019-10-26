@@ -126,13 +126,11 @@ $(document).ready(function () {
             });
         });
         console.log(data);
-        data.forEach((element) => {
-            if (element = apiRecipes[newElement].recipe_id) {
-                console.log("exists")
-            } else {
-                console.log("not exist")
-            }
-        })
+
+        data.forEach(function (element) {
+            console.log(element)
+        });
+        console.log("test")
     });
     // database.ref(`/users/${sessionStorage.getItem("user")}`).on("child_added", function (snapshot) {
     //     snapshot.forEach(function () {
@@ -140,12 +138,12 @@ $(document).ready(function () {
     //     });
     // });
 
-    // database.ref(`/users/${sessionStorage.getItem("user")}`).push({
-    //     recipe: apiRecipes[newElement],
-    //     recipeID: apiRecipes[newElement].recipe_id,
-    // });
-    // console.log(apiRecipes[newElement].recipe_id, "element pushed");
-    // });
+    database.ref(`/users/${sessionStorage.getItem("user")}`).push({
+        recipe: apiRecipes[newElement],
+        recipeID: apiRecipes[newElement].recipe_id,
+    });
+    console.log(apiRecipes[newElement].recipe_id, "element pushed");
+
 
 
 
