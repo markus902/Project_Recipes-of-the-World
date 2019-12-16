@@ -1,6 +1,6 @@
 # Recipes of the World
 
-Deployment link: https://markus902.github.io/UNH-09-Recipes-of-the-World/
+Deployment link: https://markus902.github.io/Project_Recipes-of-the-World/
 
 ### Description and usage
 
